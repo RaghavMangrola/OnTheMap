@@ -14,6 +14,14 @@ class LoginViewController: UIViewController {
   @IBOutlet weak var passwordTextField: UITextField!
   @IBOutlet var loginTextFields: [UITextField]!
   
+  @IBAction func loginButtonPressed(sender: AnyObject) {
+    if emailTextField.text!.isEmpty || passwordTextField.text!.isEmpty {
+      displayError("Please make sure you enter in both fields.")
+    } else {
+      UClient.sharedInstance().getSessionID(username: emailTextField.text!, password: passwordTextField.text!)
+    }
+  }
+  
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -30,6 +38,14 @@ class LoginViewController: UIViewController {
       textField.backgroundColor = UIColor(red: 255, green: 255, blue: 255, alpha: 0.75)
       textField.textColor = UIColor.whiteColor()
     }
+  }
+  
+  func displayError(error: String) {
+    let alert = UIAlertController(title: "Error", message: error, preferredStyle: UIAlertControllerStyle.Alert)
+    let action = UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil)
+    alert.addAction(action)
+    // TODO: Highlight empty text field so user can visually see what's missing.
+    self.presentViewController(alert, animated: true, completion: nil)
   }
   
 }
