@@ -34,12 +34,12 @@ class LoginViewController: UIViewController {
     configureUI()
   }
   
-  func configureUI() {
+  private func configureUI() {
     self.view.backgroundColor = UIColor.orangeColor()
     setupTextFields()
   }
   
-  func setupTextFields() {
+  private func setupTextFields() {
     for textField in loginTextFields {
       textField.backgroundColor = UIColor(red: 255, green: 255, blue: 255, alpha: 0.75)
       textField.textColor = UIColor.whiteColor()
@@ -54,7 +54,11 @@ class LoginViewController: UIViewController {
     self.presentViewController(alert, animated: true, completion: nil)
   }
   
-  
-  
+  private func completeLogin() {
+    dispatch_async(dispatch_get_main_queue()) {
+      let controller = self.storyboard?.instantiateViewControllerWithIdentifier("mapAndTableTabBarController") as! UITabBarController
+      self.presentViewController(controller, animated: true, completion: nil)
+    }
+  }
 }
 
