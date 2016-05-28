@@ -17,7 +17,7 @@ class UClient : NSObject {
   
   let loginVC = LoginViewController()
   
-  func getSessionID(username username: String, password: String) {
+  func getSessionID(username username: String, password: String, completionHandlerForSessionID: (success: Bool, errorString: String?) -> Void) {
 
     let request = NSMutableURLRequest(URL: NSURL(string: "https://www.udacity.com/api/session")!)
     request.HTTPMethod = "POST"
@@ -28,28 +28,20 @@ class UClient : NSObject {
     let session = NSURLSession.sharedSession()
     
     let task = session.dataTaskWithRequest(request) { (data, response, error) in
-      
-      func displayError(error: String) {
-        let alert = UIAlertController(title: "Error", message: error, preferredStyle: UIAlertControllerStyle.Alert)
-        let action = UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil)
-        alert.addAction(action)
-        // TODO: Highlight empty text field so user can visually see what's missing.
-        self.loginVC.presentViewController(alert, animated: true, completion: nil)
-      }
-      
+            
       guard (error == nil) else {
-        displayError("There was an error with your request")
+        self.loginVC.displayError("There was an error with your request")
         print(error)
         return
       }
       
       guard let statusCode = (response as? NSHTTPURLResponse)?.statusCode where statusCode >= 200 && statusCode <= 299 else {
-        displayError("Your request returned a status code other than 2xx!")
+        self.loginVC.displayError("Your request returned a status code other than 2xx!")
         return
       }
       
       guard let data = data else {
-        displayError("No data was returned by the request!")
+        self.loginVC.displayError("No data was returned by the request!")
         return
       }
       
@@ -59,18 +51,18 @@ class UClient : NSObject {
       do {
         parsedResult = try NSJSONSerialization.JSONObjectWithData(newData, options: .AllowFragments)
       } catch {
-        displayError("Could not parse the data as JSON")
+        self.loginVC.displayError("Could not parse the data as JSON")
         print(newData)
         return
       }
       
       guard let sessionID = parsedResult["session"] as? [String:AnyObject] else {
-        displayError("Could not parse session")
+        self.loginVC.displayError("Could not parse session")
         return
       }
       
       self.sessionID = sessionID["id"] as? String
-      print(sessionID["id"] as? String)
+      completionHandlerForSessionID(success: true, errorString: nil)
     }
     
     task.resume()

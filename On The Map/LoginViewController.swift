@@ -18,7 +18,13 @@ class LoginViewController: UIViewController {
     if emailTextField.text!.isEmpty || passwordTextField.text!.isEmpty {
       displayError("Please make sure you enter in both fields.")
     } else {
-      UClient.sharedInstance().getSessionID(username: emailTextField.text!, password: passwordTextField.text!)
+      UClient.sharedInstance().getSessionID(username: emailTextField.text!, password: passwordTextField.text!) { (success, error) in
+        if success {
+          print(UClient.sharedInstance().sessionID)
+        } else {
+          self.displayError(error!)
+        }
+      }
     }
   }
   
@@ -47,6 +53,8 @@ class LoginViewController: UIViewController {
     // TODO: Highlight empty text field so user can visually see what's missing.
     self.presentViewController(alert, animated: true, completion: nil)
   }
+  
+  
   
 }
 
