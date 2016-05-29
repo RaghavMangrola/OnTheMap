@@ -12,6 +12,7 @@
 		A01257221CF608BB0040275E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A01257201CF608BB0040275E /* Main.storyboard */; };
 		A01257241CF608BB0040275E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A01257231CF608BB0040275E /* Assets.xcassets */; };
 		A01257271CF608BB0040275E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A01257251CF608BB0040275E /* LaunchScreen.storyboard */; };
+		A01257321CF7BE120040275E /* UClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A01257311CF7BE120040275E /* UClient.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		A01257231CF608BB0040275E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A01257261CF608BB0040275E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A01257281CF608BC0040275E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A01257311CF7BE120040275E /* UClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UClient.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +71,7 @@
 		A012572E1CF6092E0040275E /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				A01257311CF7BE120040275E /* UClient.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -160,6 +163,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A012571F1CF608BB0040275E /* LoginViewController.swift in Sources */,
+				A01257321CF7BE120040275E /* UClient.swift in Sources */,
 				A012571D1CF608BB0040275E /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -310,6 +314,7 @@
 				A012572D1CF608BC0040275E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
