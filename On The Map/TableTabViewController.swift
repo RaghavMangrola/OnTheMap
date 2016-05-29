@@ -26,6 +26,8 @@ class TableTabViewController: UIViewController, UITableViewDelegate, UITableView
     }
   }
   
+  // MARK: UITableViewDataSource Methods
+  
   func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCellWithIdentifier("studentInfo", forIndexPath: indexPath)
     cell.textLabel?.text = ("\(studentLocations[indexPath.row].firstName) \(studentLocations[indexPath.row].lastName)")
@@ -35,4 +37,6 @@ class TableTabViewController: UIViewController, UITableViewDelegate, UITableView
   func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return studentLocations.count
   }
+  
+  // MARK: UITableViewDelegate Methods
 }

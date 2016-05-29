@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="NpE-dz-uG9">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -72,7 +72,7 @@
         <!--Table Tab View Controller-->
         <scene sceneID="RHp-2o-Pmc">
             <objects>
-                <viewController id="l1D-fi-XZt" customClass="TableTabViewController" customModule="On_The_Map" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="l1D-fi-XZt" customClass="TableTabViewController" customModule="On_The_Map" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="BnF-44-RAZ"/>
                         <viewControllerLayoutGuide type="bottom" id="UIT-Cj-ukE"/>
@@ -85,24 +85,16 @@
                                 <rect key="frame" x="0.0" y="64" width="600" height="487"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="studentInfo" textLabel="SC1-dZ-V7T" style="IBUITableViewCellStyleDefault" id="tLj-0y-dOf">
-                                        <rect key="frame" x="0.0" y="92" width="600" height="44"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="studentInfo" id="eMi-N6-aL3">
+                                        <rect key="frame" x="0.0" y="28" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="tLj-0y-dOf" id="UjY-VE-kuK">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="eMi-N6-aL3" id="dY6-Bp-fNf">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="SC1-dZ-V7T">
-                                                    <rect key="frame" x="15" y="0.0" width="570" height="43"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>
+                                <sections/>
                                 <connections>
                                     <outlet property="dataSource" destination="l1D-fi-XZt" id="Fza-Mh-tFX"/>
                                     <outlet property="delegate" destination="l1D-fi-XZt" id="eGc-k9-nQP"/>
@@ -114,7 +106,9 @@
                             <constraint firstItem="wkx-62-lcB" firstAttribute="leading" secondItem="lvP-FA-s0Z" secondAttribute="leading" id="3Ae-ZH-hut"/>
                             <constraint firstItem="wkx-62-lcB" firstAttribute="top" secondItem="BnF-44-RAZ" secondAttribute="bottom" id="6z4-44-GRn"/>
                             <constraint firstAttribute="trailing" secondItem="wkx-62-lcB" secondAttribute="trailing" id="fAW-d3-wZn"/>
+                            <constraint firstAttribute="trailing" secondItem="wkx-62-lcB" secondAttribute="trailing" id="gO7-Hj-TZ8"/>
                             <constraint firstItem="UIT-Cj-ukE" firstAttribute="top" secondItem="wkx-62-lcB" secondAttribute="bottom" id="mBc-Cc-Rzk"/>
+                            <constraint firstItem="wkx-62-lcB" firstAttribute="leading" secondItem="lvP-FA-s0Z" secondAttribute="leading" id="ybn-dS-6hd"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="yzO-ju-Zix"/>
