@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class UClient : NSObject {
+class UClient: NSObject {
   // shared sessions
   var session = NSURLSession.sharedSession()
   // authentication state
@@ -24,8 +24,6 @@ class UClient : NSObject {
     request.addValue("application/json", forHTTPHeaderField: "Accept")
     request.addValue("application/json", forHTTPHeaderField: "Content-Type")
     request.HTTPBody = "{\"udacity\": {\"username\": \"\(username)\", \"password\": \"\(password)\"}}".dataUsingEncoding(NSUTF8StringEncoding)
-    
-    let session = NSURLSession.sharedSession()
     
     let task = session.dataTaskWithRequest(request) { (data, response, error) in
             

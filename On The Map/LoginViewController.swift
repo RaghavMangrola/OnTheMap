@@ -20,7 +20,7 @@ class LoginViewController: UIViewController {
     } else {
       UClient.sharedInstance().getSessionID(username: emailTextField.text!, password: passwordTextField.text!) { (success, error) in
         if success {
-          print(UClient.sharedInstance().sessionID)
+          self.completeLogin()
         } else {
           self.displayError(error!)
         }

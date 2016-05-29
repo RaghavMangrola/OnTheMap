@@ -62,7 +62,7 @@
                         <outlet property="passwordTextField" destination="5IZ-Cu-5lZ" id="y0P-Gq-Bkd"/>
                         <outletCollection property="loginTextFields" destination="ZXa-ND-nhe" collectionClass="NSMutableArray" id="X0z-in-Vof"/>
                         <outletCollection property="loginTextFields" destination="5IZ-Cu-5lZ" collectionClass="NSMutableArray" id="Kgr-n5-aNg"/>
-                        <segue destination="NpE-dz-uG9" kind="presentation" identifier="loginCompleteSegue" id="ynF-YS-NnB"/>
+                        <segue destination="NpE-dz-uG9" kind="showDetail" identifier="loginCompleteSegue" id="ynF-YS-NnB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -85,15 +85,28 @@
                                 <rect key="frame" x="0.0" y="64" width="600" height="487"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="tLj-0y-dOf">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="studentInfo" textLabel="SC1-dZ-V7T" style="IBUITableViewCellStyleDefault" id="tLj-0y-dOf">
                                         <rect key="frame" x="0.0" y="92" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="tLj-0y-dOf" id="UjY-VE-kuK">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="SC1-dZ-V7T">
+                                                    <rect key="frame" x="15" y="0.0" width="570" height="43"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="l1D-fi-XZt" id="Fza-Mh-tFX"/>
+                                    <outlet property="delegate" destination="l1D-fi-XZt" id="eGc-k9-nQP"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -105,6 +118,9 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="yzO-ju-Zix"/>
+                    <connections>
+                        <outlet property="tableView" destination="wkx-62-lcB" id="mbq-2h-KZi"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Iku-Sg-Ycd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

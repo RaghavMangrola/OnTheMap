@@ -16,6 +16,8 @@
 		A03650FC1CFA104700DBA6A7 /* MapTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A03650FB1CFA104700DBA6A7 /* MapTabViewController.swift */; };
 		A03650FE1CFA128600DBA6A7 /* GCDBlackBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = A03650FD1CFA128600DBA6A7 /* GCDBlackBox.swift */; };
 		A03651001CFA17D800DBA6A7 /* TableTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A03650FF1CFA17D800DBA6A7 /* TableTabViewController.swift */; };
+		A03651021CFA254400DBA6A7 /* StudentLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A03651011CFA254400DBA6A7 /* StudentLocation.swift */; };
+		A03651041CFA257200DBA6A7 /* ParseClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A03651031CFA257200DBA6A7 /* ParseClient.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +32,8 @@
 		A03650FB1CFA104700DBA6A7 /* MapTabViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapTabViewController.swift; sourceTree = "<group>"; };
 		A03650FD1CFA128600DBA6A7 /* GCDBlackBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GCDBlackBox.swift; sourceTree = "<group>"; };
 		A03650FF1CFA17D800DBA6A7 /* TableTabViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableTabViewController.swift; sourceTree = "<group>"; };
+		A03651011CFA254400DBA6A7 /* StudentLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentLocation.swift; sourceTree = "<group>"; };
+		A03651031CFA257200DBA6A7 /* ParseClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseClient.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +83,8 @@
 			isa = PBXGroup;
 			children = (
 				A01257311CF7BE120040275E /* UClient.swift */,
+				A03651011CFA254400DBA6A7 /* StudentLocation.swift */,
+				A03651031CFA257200DBA6A7 /* ParseClient.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -173,9 +179,11 @@
 			files = (
 				A012571F1CF608BB0040275E /* LoginViewController.swift in Sources */,
 				A01257321CF7BE120040275E /* UClient.swift in Sources */,
+				A03651021CFA254400DBA6A7 /* StudentLocation.swift in Sources */,
 				A03650FC1CFA104700DBA6A7 /* MapTabViewController.swift in Sources */,
 				A012571D1CF608BB0040275E /* AppDelegate.swift in Sources */,
 				A03650FE1CFA128600DBA6A7 /* GCDBlackBox.swift in Sources */,
+				A03651041CFA257200DBA6A7 /* ParseClient.swift in Sources */,
 				A03651001CFA17D800DBA6A7 /* TableTabViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
