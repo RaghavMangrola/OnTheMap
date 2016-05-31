@@ -10,6 +10,9 @@ import UIKit
 import MapKit
 
 class MapTabViewController: UIViewController, MKMapViewDelegate {
+  
+  let studentsInformation = StudentsInformation.sharedInstance
+  
   @IBOutlet weak var mapView: MKMapView!
-
+  
 }

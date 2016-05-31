@@ -7,13 +7,7 @@
 //
 
 class StudentsInformation {
-  
-  var studentsInformation: [StudentInformation]?
-  
-  class func sharedInstance() -> StudentsInformation {
-    struct Singleton {
-      static var sharedInstance = StudentsInformation()
-    }
-    return Singleton.sharedInstance
-  }
+  // http://stackoverflow.com/questions/24024549/using-a-dispatch-once-singleton-model-in-swift/24147830#24147830
+  static let sharedInstance = StudentsInformation()
+  var studentsInformation = [StudentInformation]()
 }
