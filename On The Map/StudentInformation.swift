@@ -7,7 +7,7 @@
 //
 
 
-struct StudentLocation {
+struct StudentInformation {
   
   let firstName: String
   let lastName: String
@@ -17,13 +17,13 @@ struct StudentLocation {
     lastName = dictionary["lastName"] as! String
   }
   
-  static func studentLocationsFromResults(results: [[String:AnyObject]]) -> [StudentLocation] {
-    var studentLocations = [StudentLocation]()
+  static func studentInformationFromResults(results: [[String:AnyObject]]) -> [StudentInformation] {
+    var studentInformation = [StudentInformation]()
     
     for result in results {
-      studentLocations.append(StudentLocation(dictionary: result))
+      studentInformation.append(StudentInformation(dictionary: result))
     }
     
-    return studentLocations
+    return studentInformation
   }
 }

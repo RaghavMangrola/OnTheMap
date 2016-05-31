@@ -11,12 +11,12 @@ import UIKit
 class TableTabViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
   
   @IBOutlet weak var tableView: UITableView!
-  var studentLocations: [StudentLocation] = [StudentLocation]()
+  var studentLocations: [StudentInformation] = [StudentInformation]()
   
   override func viewWillAppear(animated: Bool) {
     super.viewWillAppear(animated)
     
-    ParseClient.sharedInstance().getStudentLocation { (results) in
+    ParseClient.sharedInstance().getStudentInformation { (results) in
       if let studentLocations = results {
         self.studentLocations = studentLocations
         performUIUpdatesOnMain {
@@ -31,6 +31,7 @@ class TableTabViewController: UIViewController, UITableViewDelegate, UITableView
   func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCellWithIdentifier("studentInfo", forIndexPath: indexPath)
     cell.textLabel?.text = ("\(studentLocations[indexPath.row].firstName) \(studentLocations[indexPath.row].lastName)")
+    cell.imageView?.image = UIImage(named: "pin")
     return cell
   }
   
