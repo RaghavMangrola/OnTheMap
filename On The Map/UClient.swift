@@ -12,9 +12,9 @@ import UIKit
 class UClient: NSObject {
   // shared sessions
   var session = NSURLSession.sharedSession()
+  static let sharedInstance = UClient()
   // authentication state
   var sessionID: String? = nil
-  
   let loginVC = LoginViewController()
   
   func getSessionID(username username: String, password: String, completionHandlerForSessionID: (success: Bool, errorString: String?) -> Void) {
@@ -65,14 +65,5 @@ class UClient: NSObject {
     
     task.resume()
   }
-  
-  // Mark: Shared Instance
-  class func sharedInstance() -> UClient {
-    struct Singleton {
-      static var sharedInstance = UClient()
-    }
-    return Singleton.sharedInstance
-  }
-
 }
 

@@ -18,7 +18,7 @@ class LoginViewController: UIViewController {
     if emailTextField.text!.isEmpty || passwordTextField.text!.isEmpty {
       displayError("Please make sure you enter in both fields.")
     } else {
-      UClient.sharedInstance().getSessionID(username: emailTextField.text!, password: passwordTextField.text!) { (success, error) in
+      UClient.sharedInstance.getSessionID(username: emailTextField.text!, password: passwordTextField.text!) { (success, error) in
         if success {
           self.completeLogin()
         } else {
@@ -28,7 +28,6 @@ class LoginViewController: UIViewController {
     }
   }
   
-
   override func viewDidLoad() {
     super.viewDidLoad()
     configureUI()
@@ -58,7 +57,6 @@ class LoginViewController: UIViewController {
     dispatch_async(dispatch_get_main_queue()) {
       let controller = self.storyboard?.instantiateViewControllerWithIdentifier("mapAndTableTabBarController") as! UITabBarController
       self.presentViewController(controller, animated: true, completion: nil)
-      ParseClient.sharedInstance().getStudentInformation()
     }
   }
 }

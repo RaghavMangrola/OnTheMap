@@ -11,8 +11,9 @@ import Foundation
 class ParseClient {
   
   var session = NSURLSession.sharedSession()
+  static let sharedInstance = ParseClient()
   
-  func getStudentInformation() {
+  func getStudentInformation(completionHandleForStudentInformation: (success: Bool) -> Void) {
     let request = NSMutableURLRequest(URL: NSURL(string: "https://api.parse.com/1/classes/StudentLocation")!)
     request.addValue("QrX47CA9cyuGewLdsL7o5Eb8iug6Em8ye0dnAbIr", forHTTPHeaderField: "X-Parse-Application-Id")
     request.addValue("QuWThTdiRmTux3YaDseUSEpUKo7aBYM737yKd4gY", forHTTPHeaderField: "X-Parse-REST-API-Key")
@@ -48,15 +49,9 @@ class ParseClient {
       }
       
       StudentsInformation.sharedInstance.studentsInformation = StudentInformation.studentInformationFromResults(results)
+      completionHandleForStudentInformation(success: true)
     }
     task.resume()
   }
-  
-  // Mark: Shared Instance
-  class func sharedInstance() -> ParseClient {
-    struct Singleton {
-      static var sharedInstance = ParseClient()
-    }
-    return Singleton.sharedInstance
-  }
+
 }
