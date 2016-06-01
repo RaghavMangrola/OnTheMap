@@ -18,7 +18,6 @@ class MapTabViewController: UIViewController, MKMapViewDelegate {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    print(view.subviews)
     downloadData()
   }
   
@@ -36,7 +35,6 @@ class MapTabViewController: UIViewController, MKMapViewDelegate {
           activitiyIndicator.stopAnimating()
           activitiyIndicator.removeFromSuperview()
           self.setupAnnotations()
-          print(self.view.subviews)
         }
       }
     }
