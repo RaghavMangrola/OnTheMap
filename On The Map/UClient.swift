@@ -9,12 +9,12 @@
 import Foundation
 import UIKit
 
-class UClient : NSObject {
+class UClient: NSObject {
   // shared sessions
   var session = NSURLSession.sharedSession()
+  static let sharedInstance = UClient()
   // authentication state
   var sessionID: String? = nil
-  
   let loginVC = LoginViewController()
   
   func getSessionID(username username: String, password: String, completionHandlerForSessionID: (success: Bool, errorString: String?) -> Void) {
@@ -24,8 +24,6 @@ class UClient : NSObject {
     request.addValue("application/json", forHTTPHeaderField: "Accept")
     request.addValue("application/json", forHTTPHeaderField: "Content-Type")
     request.HTTPBody = "{\"udacity\": {\"username\": \"\(username)\", \"password\": \"\(password)\"}}".dataUsingEncoding(NSUTF8StringEncoding)
-    
-    let session = NSURLSession.sharedSession()
     
     let task = session.dataTaskWithRequest(request) { (data, response, error) in
             
@@ -67,14 +65,5 @@ class UClient : NSObject {
     
     task.resume()
   }
-  
-  // Mark: Shared Instance
-  class func sharedInstance() -> UClient {
-    struct Singleton {
-      static var sharedInstance = UClient()
-    }
-    return Singleton.sharedInstance
-  }
-
 }
 
