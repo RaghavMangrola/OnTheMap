@@ -39,4 +39,10 @@ class TableTabViewController: UIViewController, UITableViewDelegate, UITableView
   }
   
   // MARK: UITableViewDelegate Methods
+  
+  func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    let app = UIApplication.sharedApplication()
+    let toOpen = studentsInformationInstance.studentsInformation[indexPath.row].mediaURL
+    app.openURL(NSURL(string: toOpen)!)
+  }
 }
