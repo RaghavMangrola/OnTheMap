@@ -18,6 +18,8 @@
 		A03651001CFA17D800DBA6A7 /* TableTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A03650FF1CFA17D800DBA6A7 /* TableTabViewController.swift */; };
 		A03651021CFA254400DBA6A7 /* StudentInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A03651011CFA254400DBA6A7 /* StudentInformation.swift */; };
 		A03651041CFA257200DBA6A7 /* ParseClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A03651031CFA257200DBA6A7 /* ParseClient.swift */; };
+		A05D262F1D0094FA00146408 /* ParseConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A05D262E1D0094FA00146408 /* ParseConstants.swift */; };
+		A05D26311D009A5900146408 /* ParseConvenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = A05D26301D009A5900146408 /* ParseConvenience.swift */; };
 		A093D3951CFDFBC1004430EC /* StudentsInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A093D3941CFDFBC1004430EC /* StudentsInformation.swift */; };
 /* End PBXBuildFile section */
 
@@ -35,6 +37,8 @@
 		A03650FF1CFA17D800DBA6A7 /* TableTabViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = TableTabViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		A03651011CFA254400DBA6A7 /* StudentInformation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = StudentInformation.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		A03651031CFA257200DBA6A7 /* ParseClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ParseClient.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		A05D262E1D0094FA00146408 /* ParseConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseConstants.swift; sourceTree = "<group>"; };
+		A05D26301D009A5900146408 /* ParseConvenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseConvenience.swift; sourceTree = "<group>"; };
 		A093D3941CFDFBC1004430EC /* StudentsInformation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = StudentsInformation.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 /* End PBXFileReference section */
 
@@ -86,6 +90,8 @@
 			children = (
 				A01257311CF7BE120040275E /* UClient.swift */,
 				A03651031CFA257200DBA6A7 /* ParseClient.swift */,
+				A05D262E1D0094FA00146408 /* ParseConstants.swift */,
+				A05D26301D009A5900146408 /* ParseConvenience.swift */,
 				A03651011CFA254400DBA6A7 /* StudentInformation.swift */,
 				A093D3941CFDFBC1004430EC /* StudentsInformation.swift */,
 			);
@@ -180,11 +186,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A05D26311D009A5900146408 /* ParseConvenience.swift in Sources */,
 				A012571F1CF608BB0040275E /* LoginViewController.swift in Sources */,
 				A01257321CF7BE120040275E /* UClient.swift in Sources */,
 				A03651021CFA254400DBA6A7 /* StudentInformation.swift in Sources */,
 				A03650FC1CFA104700DBA6A7 /* MapTabViewController.swift in Sources */,
 				A093D3951CFDFBC1004430EC /* StudentsInformation.swift in Sources */,
+				A05D262F1D0094FA00146408 /* ParseConstants.swift in Sources */,
 				A012571D1CF608BB0040275E /* AppDelegate.swift in Sources */,
 				A03650FE1CFA128600DBA6A7 /* GCDBlackBox.swift in Sources */,
 				A03651041CFA257200DBA6A7 /* ParseClient.swift in Sources */,

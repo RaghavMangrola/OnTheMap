@@ -31,7 +31,7 @@ class MapTabViewController: UIViewController, MKMapViewDelegate {
     view.addSubview(activitiyIndicator)
     activitiyIndicator.startAnimating()
 
-    ParseClient.sharedInstance.getStudentInformation() { (success) in
+    ParseClient.sharedInstance.getStudentInformation() { (success, error) in
       if success {
         dispatch_async(dispatch_get_main_queue()) {
           activitiyIndicator.stopAnimating()
