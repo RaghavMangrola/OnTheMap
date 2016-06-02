@@ -10,22 +10,31 @@ import UIKit
 
 class TableTabViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
   
-  let studentsInformation = StudentsInformation.sharedInstance
+  let studentsInformationInstance = StudentsInformation.sharedInstance
+
   
   @IBOutlet weak var tableView: UITableView!
-  
+
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    
+    studentsInformationInstance.studentsInformation.sortInPlace() {
+      $0.updatedAt > $1.updatedAt
+    }
+    tableView.reloadData()
+  }
 
   // MARK: UITableViewDataSource Methods
   
   func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCellWithIdentifier("studentInfo", forIndexPath: indexPath)
-    cell.textLabel?.text = ("\(studentsInformation.studentsInformation[indexPath.row].firstName) \(studentsInformation.studentsInformation[indexPath.row].lastName)")
+    cell.textLabel?.text = ("\(studentsInformationInstance.studentsInformation[indexPath.row].firstName) \(studentsInformationInstance.studentsInformation[indexPath.row].lastName)")
     cell.imageView?.image = UIImage(named: "pin")
     return cell
   }
   
   func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return studentsInformation.studentsInformation.count
+    return studentsInformationInstance.studentsInformation.count
     
   }
   
