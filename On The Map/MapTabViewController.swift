@@ -15,6 +15,15 @@ class MapTabViewController: UIViewController, MKMapViewDelegate {
   var annotations = [MKPointAnnotation]()
   
   @IBOutlet weak var mapView: MKMapView!
+  @IBAction func logoutButtonPressed(sender: AnyObject) {
+    UClient.sharedInstance.deleteSession() { (success, error) in
+      if success {
+        UClient.sharedInstance.logout(self)
+      } else {
+        self.displayError(error!)
+      }
+    }
+  }
   
   override func viewDidLoad() {
     super.viewDidLoad()

@@ -7,16 +7,19 @@
 //
 
 import Foundation
+import UIKit
+
 
 extension UClient {
   
-  func authenticate(username: String, password: String,completionHandlerForAuthentication: (success: Bool, error: NSError?) -> Void ) {
-    let parameters = [String:AnyObject]()
     let username = "raghav.mangrola@gmail.com"
     let password = "i2flyt0hir3us7dazt4a"
+  func authenticate(username: String, password: String,completionHandlerForAuthentication: (success: Bool, error: NSError?) -> Void ) {
+    let parameters = [String:AnyObject]()
+
     let jsonBody = "{\"udacity\": {\"username\": \"\(username)\", \"password\": \"\(password)\"}}"
     
-
+    
     taskForPOSTMethod(Methods.CreateSession, parameters: parameters, jsonBody: jsonBody) { (results, error) in
       if let error = error {
         completionHandlerForAuthentication(success: false, error: error)
@@ -25,7 +28,6 @@ extension UClient {
           
           self.sessionID = sessionInfo["id"] as? String
           self.userID = userInfo["key"] as? String
-          print(self.userID)
           
           
           completionHandlerForAuthentication(success: true, error: nil)
@@ -46,13 +48,39 @@ extension UClient {
         if let userInfo = results["user"] as? [String:AnyObject], firstName = userInfo["first_name"] as? String, lastName = userInfo["last_name"] as? String {
           self.firstName = firstName
           self.lastName = lastName
-          print(firstName)
-          print(lastName)
           completionHandlerForGetPublicData(success: true, error: nil)
         } else {
           completionHandlerForGetPublicData(success: false, error: NSError(domain: "getPublicData", code: 1, userInfo: [NSLocalizedDescriptionKey: "Failed to parse info"]))
         }
       }
+    }
+  }
+  
+  func deleteSession(completionHandlerForDeleteSession: (success: Bool, error: NSError?) -> Void) {
+    let parameters = [String: AnyObject]()
+    taskForDELETEMethod(Methods.CreateSession, parameters: parameters)  { (results, error) in
+      if let error = error {
+        completionHandlerForDeleteSession(success: false, error: error)
+      } else {
+        if (results["session"] as? [String:AnyObject]) != nil {
+          self.sessionID = nil
+          self.userID = nil
+          self.firstName = nil
+          self.lastName = nil
+          StudentsInformation.sharedInstance.studentsInformation = []
+          completionHandlerForDeleteSession(success: true, error: nil)
+        } else {
+          completionHandlerForDeleteSession(success: false, error: NSError(domain: "logout", code: 1, userInfo: [NSLocalizedDescriptionKey: "Failed to parse info"]))
+        }
+        
+      }
+    }
+  }
+  
+  func logout(hostViewController: UIViewController) {
+    dispatch_async(dispatch_get_main_queue()) {
+      let controller = hostViewController.storyboard!.instantiateViewControllerWithIdentifier("loginVC")
+      hostViewController.presentViewController(controller, animated: true, completion: nil)
     }
   }
 }
