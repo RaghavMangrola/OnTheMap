@@ -52,6 +52,44 @@ class ParseClient {
     return task
   }
   
+  func taskForPOSTMethod(method: String, var parameters: [String:AnyObject], jsonBody: String, completionHandlerForPOST: (result: AnyObject!, error: NSError?) -> Void) -> NSURLSessionDataTask {
+    
+    let request = NSMutableURLRequest(URL: parseURLFromParameters(parameters, withPathExtension: method))
+    request.HTTPMethod = "POST"
+    request.addValue("QrX47CA9cyuGewLdsL7o5Eb8iug6Em8ye0dnAbIr", forHTTPHeaderField: "X-Parse-Application-Id")
+    request.addValue("QuWThTdiRmTux3YaDseUSEpUKo7aBYM737yKd4gY", forHTTPHeaderField: "X-Parse-REST-API-Key")
+    request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+    request.HTTPBody = jsonBody.dataUsingEncoding(NSUTF8StringEncoding)
+    
+    let task = session.dataTaskWithRequest(request) { data, response, error in
+      
+      func sendError(error: String) {
+        print(error)
+        let userInfo = [NSLocalizedDescriptionKey : error]
+        completionHandlerForPOST(result: nil, error: NSError(domain: "taskForPOSTMethod", code: 1, userInfo: userInfo))
+      }
+      
+      guard (error == nil) else {
+        sendError("There was an error with your request: \(error)")
+        return
+      }
+
+      guard let statusCode = (response as? NSHTTPURLResponse)?.statusCode where statusCode >= 200 && statusCode <= 299 else {
+        sendError("Your request returned a status code other than 2xx! \(response)")
+        return
+      }
+
+      guard let data = data else {
+        sendError("No data was returned by the request!")
+        return
+      }
+
+      self.convertDataWithCompletionHandler(data, completionHandlerForConvertData: completionHandlerForPOST)
+    }
+    task.resume()
+    return task
+  }
+  
   private func parseURLFromParameters(parameters: [String:AnyObject], withPathExtension: String? = nil) -> NSURL {
     let components = NSURLComponents()
     components.scheme = ParseClient.Constants.ApiScheme
