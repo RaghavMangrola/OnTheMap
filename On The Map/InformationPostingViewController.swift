@@ -38,7 +38,6 @@ class InformationPostingViewController: UIViewController, MKMapViewDelegate {
   
   @IBAction func submitButtonPressed(sender: AnyObject) {
     ParseClient.sharedInstance.postStudentInformation(locationTextField.text!, mediaURL: urlSubmissionLabel.text!, latitude: (coordinate?.latitude)!, longitude: (coordinate?.longitude)!) { (result, error) in
-      
     }
   }
   

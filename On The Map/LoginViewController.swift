@@ -16,11 +16,17 @@ class LoginViewController: UIViewController {
   
   @IBAction func loginButtonPressed(sender: AnyObject) {
     if emailTextField.text!.isEmpty || passwordTextField.text!.isEmpty {
-      displayError("Please make sure you enter in both fields.")
+      displayError(NSError(domain: "loginButton", code: 0, userInfo: [NSLocalizedDescriptionKey : "Please make sure you enter in both fields"]))
     } else {
-      UClient.sharedInstance.getSessionID(username: emailTextField.text!, password: passwordTextField.text!) { (success, error) in
+      UClient.sharedInstance.authenticate(emailTextField.text!, password: passwordTextField.text!) { (success, error) in
         if success {
-          self.completeLogin()
+          UClient.sharedInstance.getPublicData(UClient.sharedInstance.userID!) { (success, error) in
+            if success {
+              self.completeLogin()
+            } else {
+              self.displayError(error!)
+            }
+          }
         } else {
           self.displayError(error!)
         }
@@ -45,12 +51,14 @@ class LoginViewController: UIViewController {
     }
   }
   
-  func displayError(error: String) {
-    let alert = UIAlertController(title: "Error", message: error, preferredStyle: UIAlertControllerStyle.Alert)
-    let action = UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil)
-    alert.addAction(action)
-    // TODO: Highlight empty text field so user can visually see what's missing.
-    self.presentViewController(alert, animated: true, completion: nil)
+  func displayError(error: NSError) {
+    dispatch_async(dispatch_get_main_queue()) {
+      let alert = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: UIAlertControllerStyle.Alert)
+      let action = UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil)
+      alert.addAction(action)
+      // TODO: Highlight empty text field so user can visually see what's missing.
+      self.presentViewController(alert, animated: true, completion: nil)
+    }
   }
   
   private func completeLogin() {

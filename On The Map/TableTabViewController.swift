@@ -18,9 +18,6 @@ class TableTabViewController: UIViewController, UITableViewDelegate, UITableView
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    studentsInformationInstance.studentsInformation.sortInPlace() {
-      $0.updatedAt > $1.updatedAt
-    }
     tableView.reloadData()
   }
 

@@ -13,7 +13,9 @@ class ParseClient {
   var session = NSURLSession.sharedSession()
   static let sharedInstance = ParseClient()
   
-  func taskForGetMethod(method: String, var parameters: [String:AnyObject], completionHandlerForGET: (result: AnyObject!, error: NSError?) -> Void) -> NSURLSessionDataTask {
+  func taskForGetMethod(method: String, parameters: [String:AnyObject], completionHandlerForGET: (result: AnyObject!, error: NSError?) -> Void) -> NSURLSessionDataTask {
+    
+    var parameters = parameters
     
     let request = NSMutableURLRequest(URL: parseURLFromParameters(parameters, withPathExtension: method))
     request.addValue("QrX47CA9cyuGewLdsL7o5Eb8iug6Em8ye0dnAbIr", forHTTPHeaderField: "X-Parse-Application-Id")
@@ -52,7 +54,9 @@ class ParseClient {
     return task
   }
   
-  func taskForPOSTMethod(method: String, var parameters: [String:AnyObject], jsonBody: String, completionHandlerForPOST: (result: AnyObject!, error: NSError?) -> Void) -> NSURLSessionDataTask {
+  func taskForPOSTMethod(method: String, parameters: [String:AnyObject], jsonBody: String, completionHandlerForPOST: (result: AnyObject!, error: NSError?) -> Void) -> NSURLSessionDataTask {
+    
+    var parameters = parameters
     
     let request = NSMutableURLRequest(URL: parseURLFromParameters(parameters, withPathExtension: method))
     request.HTTPMethod = "POST"

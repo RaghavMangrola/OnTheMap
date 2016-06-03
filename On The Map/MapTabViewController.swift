@@ -38,6 +38,8 @@ class MapTabViewController: UIViewController, MKMapViewDelegate {
           activitiyIndicator.removeFromSuperview()
           self.setupAnnotations()
         }
+      } else {
+        self.displayError(error!)
       }
     }
   }
@@ -87,6 +89,15 @@ class MapTabViewController: UIViewController, MKMapViewDelegate {
       if let toOpen = view.annotation?.subtitle! {
         app.openURL(NSURL(string: toOpen)!)
       }
+    }
+  }
+  
+  func displayError(error: NSError) {
+    dispatch_async(dispatch_get_main_queue()) {
+      let alert = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: UIAlertControllerStyle.Alert)
+      let action = UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil)
+      alert.addAction(action)
+      self.presentViewController(alert, animated: true, completion: nil)
     }
   }
 }
