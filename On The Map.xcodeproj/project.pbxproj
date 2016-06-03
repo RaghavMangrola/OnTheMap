@@ -18,10 +18,13 @@
 		A03651001CFA17D800DBA6A7 /* TableTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A03650FF1CFA17D800DBA6A7 /* TableTabViewController.swift */; };
 		A03651021CFA254400DBA6A7 /* StudentInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A03651011CFA254400DBA6A7 /* StudentInformation.swift */; };
 		A03651041CFA257200DBA6A7 /* ParseClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A03651031CFA257200DBA6A7 /* ParseClient.swift */; };
+		A03E7A221CFFB88B00646D10 /* InformationPostingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A03E7A211CFFB88B00646D10 /* InformationPostingViewController.swift */; };
 		A05D262F1D0094FA00146408 /* ParseConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A05D262E1D0094FA00146408 /* ParseConstants.swift */; };
 		A05D26311D009A5900146408 /* ParseConvenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = A05D26301D009A5900146408 /* ParseConvenience.swift */; };
-		A03E7A221CFFB88B00646D10 /* InformationPostingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A03E7A211CFFB88B00646D10 /* InformationPostingViewController.swift */; };
+		A072D3A11D01F7B200E60B7C /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A072D3A01D01F7B200E60B7C /* UIViewController.swift */; };
 		A093D3951CFDFBC1004430EC /* StudentsInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A093D3941CFDFBC1004430EC /* StudentsInformation.swift */; };
+		A0C37D311D012384004B625F /* UConvenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0C37D301D012384004B625F /* UConvenience.swift */; };
+		A0C37D331D01240C004B625F /* UConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0C37D321D01240C004B625F /* UConstants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,10 +41,13 @@
 		A03650FF1CFA17D800DBA6A7 /* TableTabViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = TableTabViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		A03651011CFA254400DBA6A7 /* StudentInformation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = StudentInformation.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		A03651031CFA257200DBA6A7 /* ParseClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ParseClient.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		A03E7A211CFFB88B00646D10 /* InformationPostingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InformationPostingViewController.swift; sourceTree = "<group>"; };
 		A05D262E1D0094FA00146408 /* ParseConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseConstants.swift; sourceTree = "<group>"; };
 		A05D26301D009A5900146408 /* ParseConvenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseConvenience.swift; sourceTree = "<group>"; };
-		A03E7A211CFFB88B00646D10 /* InformationPostingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InformationPostingViewController.swift; sourceTree = "<group>"; };
+		A072D3A01D01F7B200E60B7C /* UIViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
 		A093D3941CFDFBC1004430EC /* StudentsInformation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = StudentsInformation.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		A0C37D301D012384004B625F /* UConvenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UConvenience.swift; sourceTree = "<group>"; };
+		A0C37D321D01240C004B625F /* UConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UConstants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,10 +80,9 @@
 		A012571B1CF608BB0040275E /* On The Map */ = {
 			isa = PBXGroup;
 			children = (
-				A012572E1CF6092E0040275E /* Model */,
-				A012572F1CF609340040275E /* View */,
-				A01257301CF609390040275E /* Controller */,
 				A012571C1CF608BB0040275E /* AppDelegate.swift */,
+				A012572E1CF6092E0040275E /* Model */,
+				A01257301CF609390040275E /* Controller */,
 				A01257201CF608BB0040275E /* Main.storyboard */,
 				A01257231CF608BB0040275E /* Assets.xcassets */,
 				A01257251CF608BB0040275E /* LaunchScreen.storyboard */,
@@ -91,6 +96,8 @@
 			isa = PBXGroup;
 			children = (
 				A01257311CF7BE120040275E /* UClient.swift */,
+				A0C37D301D012384004B625F /* UConvenience.swift */,
+				A0C37D321D01240C004B625F /* UConstants.swift */,
 				A03651031CFA257200DBA6A7 /* ParseClient.swift */,
 				A05D262E1D0094FA00146408 /* ParseConstants.swift */,
 				A05D26301D009A5900146408 /* ParseConvenience.swift */,
@@ -100,13 +107,6 @@
 			name = Model;
 			sourceTree = "<group>";
 		};
-		A012572F1CF609340040275E /* View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = View;
-			sourceTree = "<group>";
-		};
 		A01257301CF609390040275E /* Controller */ = {
 			isa = PBXGroup;
 			children = (
@@ -114,6 +114,7 @@
 				A03650FB1CFA104700DBA6A7 /* MapTabViewController.swift */,
 				A03650FF1CFA17D800DBA6A7 /* TableTabViewController.swift */,
 				A03E7A211CFFB88B00646D10 /* InformationPostingViewController.swift */,
+				A072D3A01D01F7B200E60B7C /* UIViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -198,9 +199,12 @@
 				A05D262F1D0094FA00146408 /* ParseConstants.swift in Sources */,
 				A012571D1CF608BB0040275E /* AppDelegate.swift in Sources */,
 				A03E7A221CFFB88B00646D10 /* InformationPostingViewController.swift in Sources */,
+				A0C37D331D01240C004B625F /* UConstants.swift in Sources */,
 				A03650FE1CFA128600DBA6A7 /* GCDBlackBox.swift in Sources */,
 				A03651041CFA257200DBA6A7 /* ParseClient.swift in Sources */,
+				A0C37D311D012384004B625F /* UConvenience.swift in Sources */,
 				A03651001CFA17D800DBA6A7 /* TableTabViewController.swift in Sources */,
+				A072D3A11D01F7B200E60B7C /* UIViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

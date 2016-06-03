@@ -9,7 +9,7 @@
         <!--Login View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="LoginViewController" customModule="On_The_Map" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="loginVC" id="BYZ-38-t0r" customClass="LoginViewController" customModule="On_The_Map" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -41,8 +41,11 @@
                                     <constraint firstAttribute="height" constant="44" id="HVR-eK-fmw"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" spellCheckingType="no" secureTextEntry="YES"/>
                             </textField>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="udacity" translatesAutoresizingMaskIntoConstraints="NO" id="NfP-zc-o5b">
+                                <rect key="frame" x="172" y="5" width="256" height="256"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -50,11 +53,13 @@
                             <constraint firstItem="5IZ-Cu-5lZ" firstAttribute="top" secondItem="ZXa-ND-nhe" secondAttribute="bottom" constant="16" id="A6X-qb-hRi"/>
                             <constraint firstItem="ZXa-ND-nhe" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="261" id="FQS-p0-4h3"/>
                             <constraint firstAttribute="trailingMargin" secondItem="5IZ-Cu-5lZ" secondAttribute="trailing" constant="40" id="OJx-em-PWa"/>
+                            <constraint firstItem="NfP-zc-o5b" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Qsv-BF-zaw"/>
                             <constraint firstItem="hX0-No-VdA" firstAttribute="top" secondItem="5IZ-Cu-5lZ" secondAttribute="bottom" constant="16" id="be5-sg-2aW"/>
                             <constraint firstItem="hX0-No-VdA" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="40" id="ceX-gn-zli"/>
                             <constraint firstAttribute="trailingMargin" secondItem="hX0-No-VdA" secondAttribute="trailing" constant="40" id="d6q-Aq-zZ1"/>
                             <constraint firstItem="ZXa-ND-nhe" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="40" id="eHv-TD-lb1"/>
                             <constraint firstAttribute="trailingMargin" secondItem="ZXa-ND-nhe" secondAttribute="trailing" constant="40" id="o3a-Nc-Act"/>
+                            <constraint firstItem="ZXa-ND-nhe" firstAttribute="top" secondItem="NfP-zc-o5b" secondAttribute="bottom" constant="20" id="pNN-Hv-wMa"/>
                         </constraints>
                     </view>
                     <connections>
@@ -112,6 +117,11 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="yzO-ju-Zix">
+                        <barButtonItem key="leftBarButtonItem" title="Logout" id="BoN-Ww-pxP">
+                            <connections>
+                                <action selector="logoutButtonPressed:" destination="l1D-fi-XZt" id="IGN-0I-NiS"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" image="pin" id="VKl-sk-8ty">
                             <connections>
                                 <segue destination="Men-6e-v6B" kind="presentation" id="nxd-uK-UaV"/>
@@ -151,6 +161,11 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="c4v-DF-eUq">
+                        <barButtonItem key="leftBarButtonItem" title="Logout" id="Rmn-Ak-5EO">
+                            <connections>
+                                <action selector="logoutButtonPressed:" destination="WUI-J6-2PC" id="mz2-QE-Gj4"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" image="pin" id="Z7A-Xn-KYx">
                             <connections>
                                 <segue destination="Men-6e-v6B" kind="presentation" id="agh-L6-gE9"/>
@@ -192,7 +207,7 @@
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mJg-wE-wNa">
                                 <rect key="frame" x="120" y="235" width="360" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Where are you studying today?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7vZ-JO-zib">
                                 <rect key="frame" x="182" y="114" width="237" height="21"/>
@@ -223,7 +238,7 @@
                             <textField hidden="YES" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VZy-Zo-Ak0">
                                 <rect key="frame" x="40" y="155" width="520" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="21"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" spellCheckingType="no"/>
                             </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -257,7 +272,7 @@
                         <outlet property="mapView" destination="g5y-sD-cUr" id="lEU-6z-1CJ"/>
                         <outlet property="studyingLabel" destination="7vZ-JO-zib" id="zOZ-Af-8DJ"/>
                         <outlet property="submitButton" destination="WfD-Ri-452" id="MRd-IM-xtL"/>
-                        <outlet property="urlSubmissionLabel" destination="VZy-Zo-Ak0" id="3GU-wC-vDc"/>
+                        <outlet property="urlSubmissionTextField" destination="VZy-Zo-Ak0" id="I4H-E3-hnl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LpU-S7-TKa" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -325,6 +340,7 @@
         <image name="list" width="32" height="32"/>
         <image name="map" width="32" height="32"/>
         <image name="pin" width="32" height="32"/>
+        <image name="udacity" width="256" height="256"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="agh-L6-gE9"/>

@@ -20,71 +20,101 @@ class UClient: NSObject {
   var lastName: String? = nil
   let loginVC = LoginViewController()
   
-  func getSessionID(username username: String, password: String, completionHandlerForSessionID: (success: Bool, errorString: String?) -> Void) {
+  func taskForPOSTMethod(method: String, parameters: [String:AnyObject], jsonBody: String, completionHandlerForPOST: (result: AnyObject!, error: NSError?) -> Void) -> NSURLSessionDataTask {
     
-    let request = NSMutableURLRequest(URL: NSURL(string: "https://www.udacity.com/api/session")!)
+    var parameters = parameters
+    
+    let request = NSMutableURLRequest(URL: udacityURLFromParameters(parameters, withPathExtension: method))
     request.HTTPMethod = "POST"
     request.addValue("application/json", forHTTPHeaderField: "Accept")
     request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-    request.HTTPBody = "{\"udacity\": {\"username\": \"\(username)\", \"password\": \"\(password)\"}}".dataUsingEncoding(NSUTF8StringEncoding)
+    request.HTTPBody = jsonBody.dataUsingEncoding(NSUTF8StringEncoding)
     
-    let task = session.dataTaskWithRequest(request) { (data, response, error) in
-            
+    let task = session.dataTaskWithRequest(request) { (data,response, error) in
+      func sendError(error: String) {
+        let userInfo = [NSLocalizedDescriptionKey : error]
+        completionHandlerForPOST(result: nil, error: NSError(domain: "getSessionID", code: 1, userInfo: userInfo))
+      }
+      
       guard (error == nil) else {
-        self.loginVC.displayError("There was an error with your request")
-        print(error)
+        sendError("There was an error with your request")
         return
       }
       
       guard let statusCode = (response as? NSHTTPURLResponse)?.statusCode where statusCode >= 200 && statusCode <= 299 else {
-        self.loginVC.displayError("Your request returned a status code other than 2xx!")
+        sendError("Incorrect Username or Password!")
         return
       }
       
       guard let data = data else {
-        self.loginVC.displayError("No data was returned by the request!")
+        sendError("No data was returned by the request!")
         return
       }
       
       let newData = data.subdataWithRange(NSMakeRange(5, data.length - 5))
       
-      let parsedResult: AnyObject!
-      do {
-        parsedResult = try NSJSONSerialization.JSONObjectWithData(newData, options: .AllowFragments)
-      } catch {
-        self.loginVC.displayError("Could not parse the data as JSON")
+      self.convertDataWithCompletionHandler(newData, completionHandlerForConvertData: completionHandlerForPOST)
+    }
+    task.resume()
+    return task
+  }
+  
+  func taskForGetMethod(method: String, parameters: [String:AnyObject], completionHandlerForGET: (result: AnyObject!, error: NSError?) -> Void) -> NSURLSessionDataTask {
+    
+    var parameters = parameters
+    
+    let request = NSMutableURLRequest(URL: udacityURLFromParameters(parameters, withPathExtension: method))
+
+    let task = session.dataTaskWithRequest(request) { (data, response, error) in
+      
+      func sendError(error: String) {
+        let userInfo = [NSLocalizedDescriptionKey: error]
+        completionHandlerForGET(result: nil, error: NSError(domain: "taskForGETMethod", code: 1, userInfo: userInfo))
+      }
+      
+      guard (error == nil) else {
+        sendError("There was an error with your request: \(error)")
         return
       }
       
-      guard let sessionInfo = parsedResult["session"] as? [String:AnyObject] else {
-        self.loginVC.displayError("Could not parse session")
+      guard let statusCode = (response as? NSHTTPURLResponse)?.statusCode where statusCode >= 200 && statusCode <= 299 else {
+        sendError("Your request returned a status code other than 2xx!")
         return
       }
       
-      guard let userInfo = parsedResult["account"] as? [String:AnyObject] else {
+      guard let data = data else {
+        sendError("No data was returned by the request!")
         return
       }
       
-      self.sessionID = sessionInfo["id"] as? String
-      self.userID = userInfo["key"] as? String
-      completionHandlerForSessionID(success: true, errorString: nil)
-      self.getPublicData(self.userID!) { (success, error) in
-        
-      }
+      let newData = data.subdataWithRange(NSMakeRange(5, data.length - 5))
+
+      
+      self.convertDataWithCompletionHandler(newData, completionHandlerForConvertData: completionHandlerForGET)
       
     }
     
     task.resume()
-    
+    return task
   }
-  
-  func getPublicData(userId: String, completionHandlerforGetPublicData: (success: Bool, errorString: String?) -> Void) {
-    let request = NSURLRequest(URL: NSURL(string: "https://www.udacity.com/api/users/\(userId)")!)
+
+  func taskForDELETEMethod(method: String, parameters: [String:AnyObject], completionHandlerForDELETE: (result: AnyObject!, error: NSError?) -> Void) -> NSURLSessionDataTask {
+    let request = NSMutableURLRequest(URL: udacityURLFromParameters(parameters, withPathExtension: method))
+    request.HTTPMethod = "DELETE"
+    var xsrfCookie: NSHTTPCookie? = nil
+    let sharedCookieStorage = NSHTTPCookieStorage.sharedHTTPCookieStorage()
+    for cookie in sharedCookieStorage.cookies! {
+      if cookie.name == "XSRF-TOKEN" { xsrfCookie = cookie }
+    }
+    if let xsrfCookie = xsrfCookie {
+      request.setValue(xsrfCookie.value, forHTTPHeaderField: "X-XSRF-TOKEN")
+    }
     
     let task = session.dataTaskWithRequest(request) { (data, response, error) in
       
       func sendError(error: String) {
         let userInfo = [NSLocalizedDescriptionKey: error]
+        completionHandlerForDELETE(result: nil, error: NSError(domain: "taskForDELETEMethod", code: 1, userInfo: userInfo))
       }
       
       guard (error == nil) else {
@@ -104,35 +134,40 @@ class UClient: NSObject {
       
       let newData = data.subdataWithRange(NSMakeRange(5, data.length - 5))
       
-      let parsedResult: AnyObject!
-      do {
-        parsedResult = try NSJSONSerialization.JSONObjectWithData(newData, options: .AllowFragments)
-      } catch {
-        self.loginVC.displayError("Could not parse the data as JSON")
-        return
-      }
       
-      guard let userInfo = parsedResult["user"] as? [String:AnyObject] else {
-        print("couldn't parse user")
-        return
-      }
-      
-      guard let firstName = userInfo["first_name"] as? String else {
-        print("Couldn't parse firstname")
-        return
-      }
-      
-      guard let lastName = userInfo["last_name"] as? String else {
-        print("couldn't parse last name")
-        return
-      }
-      
-      self.firstName = firstName
-      self.lastName = lastName
-      
+      self.convertDataWithCompletionHandler(newData, completionHandlerForConvertData: completionHandlerForDELETE)
+    }
+    task.resume()
+    return task
+  }
+  
+
+  
+  private func udacityURLFromParameters(parameters: [String:AnyObject], withPathExtension: String? = nil) -> NSURL {
+    let components = NSURLComponents()
+    components.scheme = UClient.Constants.ApiScheme
+    components.host = UClient.Constants.ApiHost
+    components.path = UClient.Constants.ApiPath + (withPathExtension ?? "")
+    components.queryItems = [NSURLQueryItem]()
+    
+    for (key, value) in parameters {
+      let queryItem = NSURLQueryItem(name: key, value: "\(value)")
+      components.queryItems!.append(queryItem)
     }
     
-    task.resume()
+    return components.URL!
+  }
+  
+  private func convertDataWithCompletionHandler(data: NSData, completionHandlerForConvertData: (result: AnyObject!, error: NSError?) -> Void) {
+    
+    var parsedResult: AnyObject!
+    do {
+      parsedResult = try NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments)
+    } catch {
+      let userInfo = [NSLocalizedDescriptionKey : "Could not parse the data as JSON: '\(data)'"]
+      completionHandlerForConvertData(result: nil, error: NSError(domain: "convertDataWithCompletionHandler", code: 1, userInfo: userInfo))
+    }
+    completionHandlerForConvertData(result: parsedResult, error: nil)
   }
 }
 
