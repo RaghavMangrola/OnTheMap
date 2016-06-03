@@ -17,7 +17,6 @@ extension ParseClient {
     
     taskForGetMethod(Methods.StudentLocation, parameters: parameters) { (results, error) in
       if let error = error {
-        print(error)
         completionHandleForStudentInformation(success: false, error: error)
       } else {
         if let results = results[ParseClient.JSONResponseKeys.StudentLocations] as? [[String:AnyObject]] {
@@ -37,12 +36,10 @@ extension ParseClient {
     let parameters = [String:AnyObject]()
     let jsonBody = "{\"uniqueKey\": \"\(userInfo.userID!)\", \"firstName\": \"\(userInfo.firstName!)\", \"lastName\": \"\(userInfo.lastName!)\",\"mapString\": \"\(mapString)\", \"mediaURL\": \"\(mediaURL)\",\"latitude\": \(latitude), \"longitude\": \(longitude)}"
     
-    print(jsonBody)
     
     taskForPOSTMethod(Methods.StudentLocation, parameters: parameters, jsonBody: jsonBody) { (results, error) in
       
       if let error = error {
-        print(error)
         completionHandlerForStudentInformation(result: nil, error: error)
       } else {
         if let results = results["objectId"] as? String {

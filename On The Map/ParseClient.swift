@@ -68,7 +68,6 @@ class ParseClient {
     let task = session.dataTaskWithRequest(request) { data, response, error in
       
       func sendError(error: String) {
-        print(error)
         let userInfo = [NSLocalizedDescriptionKey : error]
         completionHandlerForPOST(result: nil, error: NSError(domain: "taskForPOSTMethod", code: 1, userInfo: userInfo))
       }

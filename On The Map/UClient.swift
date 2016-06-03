@@ -38,7 +38,6 @@ class UClient: NSObject {
       
       guard (error == nil) else {
         sendError("There was an error with your request")
-        print(error)
         return
       }
       
@@ -96,10 +95,51 @@ class UClient: NSObject {
     }
     
     task.resume()
-    
     return task
   }
 
+  func taskForDELETEMethod(method: String, parameters: [String:AnyObject], completionHandlerForDELETE: (result: AnyObject!, error: NSError?) -> Void) -> NSURLSessionDataTask {
+    let request = NSMutableURLRequest(URL: udacityURLFromParameters(parameters, withPathExtension: method))
+    request.HTTPMethod = "DELETE"
+    var xsrfCookie: NSHTTPCookie? = nil
+    let sharedCookieStorage = NSHTTPCookieStorage.sharedHTTPCookieStorage()
+    for cookie in sharedCookieStorage.cookies! {
+      if cookie.name == "XSRF-TOKEN" { xsrfCookie = cookie }
+    }
+    if let xsrfCookie = xsrfCookie {
+      request.setValue(xsrfCookie.value, forHTTPHeaderField: "X-XSRF-TOKEN")
+    }
+    
+    let task = session.dataTaskWithRequest(request) { (data, response, error) in
+      
+      func sendError(error: String) {
+        let userInfo = [NSLocalizedDescriptionKey: error]
+        completionHandlerForDELETE(result: nil, error: NSError(domain: "taskForDELETEMethod", code: 1, userInfo: userInfo))
+      }
+      
+      guard (error == nil) else {
+        sendError("There was an error with your request: \(error)")
+        return
+      }
+      
+      guard let statusCode = (response as? NSHTTPURLResponse)?.statusCode where statusCode >= 200 && statusCode <= 299 else {
+        sendError("Your request returned a status code other than 2xx!")
+        return
+      }
+      
+      guard let data = data else {
+        sendError("No data was returned by the request!")
+        return
+      }
+      
+      let newData = data.subdataWithRange(NSMakeRange(5, data.length - 5))
+      
+      
+      self.convertDataWithCompletionHandler(newData, completionHandlerForConvertData: completionHandlerForDELETE)
+    }
+    task.resume()
+    return task
+  }
   
 
   
