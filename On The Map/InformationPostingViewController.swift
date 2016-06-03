@@ -10,7 +10,7 @@ import UIKit
 import MapKit
 import CoreLocation
 
-class InformationPostingViewController: UIViewController, MKMapViewDelegate {
+class InformationPostingViewController: UIViewController, MKMapViewDelegate, UITextFieldDelegate {
   
   let userInfo = UClient.sharedInstance
   var coordinate: CLLocationCoordinate2D? = nil
@@ -19,7 +19,7 @@ class InformationPostingViewController: UIViewController, MKMapViewDelegate {
   @IBOutlet weak var locationTextField: UITextField!
   @IBOutlet weak var findOnMapButton: UIButton!
   @IBOutlet weak var mapView: MKMapView!
-  @IBOutlet weak var urlSubmissionLabel: UITextField!
+  @IBOutlet weak var urlSubmissionTextField: UITextField!
   @IBOutlet weak var submitButton: UIButton!
   
   @IBAction func cancelButtonPressed(sender: AnyObject) {
@@ -27,9 +27,17 @@ class InformationPostingViewController: UIViewController, MKMapViewDelegate {
   }
   
   @IBAction func findOnMapButtonPressed(sender: AnyObject) {
+    let activitiyIndicator = UIActivityIndicatorView()
+    activitiyIndicator.frame = CGRectMake(0, 0, 40, 40)
+    activitiyIndicator.activityIndicatorViewStyle = .Gray
+    activitiyIndicator.center = CGPointMake(view.bounds.width / 2, view.bounds.height / 2)
+    view.addSubview(activitiyIndicator)
+    activitiyIndicator.startAnimating()
     let geocoder = CLGeocoder()
     
     geocoder.geocodeAddressString(locationTextField.text!) { (placemark, error) in
+      activitiyIndicator.stopAnimating()
+      activitiyIndicator.removeFromSuperview()
       self.coordinate = placemark?.first?.location?.coordinate
       self.configureMapView(self.coordinate!)
       self.configureUI()
@@ -37,8 +45,15 @@ class InformationPostingViewController: UIViewController, MKMapViewDelegate {
   }
   
   @IBAction func submitButtonPressed(sender: AnyObject) {
-    ParseClient.sharedInstance.postStudentInformation(locationTextField.text!, mediaURL: urlSubmissionLabel.text!, latitude: (coordinate?.latitude)!, longitude: (coordinate?.longitude)!) { (result, error) in
+    ParseClient.sharedInstance.postStudentInformation(locationTextField.text!, mediaURL: urlSubmissionTextField.text!, latitude: (coordinate?.latitude)!, longitude: (coordinate?.longitude)!) { (result, error) in
     }
+  }
+  
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    locationTextField.delegate = self
+    urlSubmissionTextField.delegate = self
+    self.hideKeyboardWhenTappedAround()
   }
   
   func configureUI() {
@@ -46,7 +61,7 @@ class InformationPostingViewController: UIViewController, MKMapViewDelegate {
     locationTextField.hidden = true
     findOnMapButton.hidden = true
     mapView.hidden = false
-    urlSubmissionLabel.hidden = false
+    urlSubmissionTextField.hidden = false
     submitButton.hidden = false
   }
   
@@ -58,6 +73,11 @@ class InformationPostingViewController: UIViewController, MKMapViewDelegate {
     self.mapView.setCenterCoordinate(coordinate, animated: true)
     self.mapView.addAnnotation(annotation)
     self.mapView.setCamera(camera, animated: true)
+  }
+  
+  func textFieldShouldReturn(textField: UITextField) -> Bool {
+    textField.resignFirstResponder()
+    return true
   }
   
   
