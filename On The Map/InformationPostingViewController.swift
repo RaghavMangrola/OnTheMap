@@ -11,16 +11,16 @@ import MapKit
 import CoreLocation
 
 class InformationPostingViewController: UIViewController, MKMapViewDelegate {
-
+  
+  let userInfo = UClient.sharedInstance
+  var coordinate: CLLocationCoordinate2D? = nil
+  
   @IBOutlet weak var studyingLabel: UILabel!
   @IBOutlet weak var locationTextField: UITextField!
   @IBOutlet weak var findOnMapButton: UIButton!
   @IBOutlet weak var mapView: MKMapView!
   @IBOutlet weak var urlSubmissionLabel: UITextField!
   @IBOutlet weak var submitButton: UIButton!
-  
-  
-  
   
   @IBAction func cancelButtonPressed(sender: AnyObject) {
     dismissViewControllerAnimated(true, completion: nil)
@@ -30,14 +30,16 @@ class InformationPostingViewController: UIViewController, MKMapViewDelegate {
     let geocoder = CLGeocoder()
     
     geocoder.geocodeAddressString(locationTextField.text!) { (placemark, error) in
-      let coordinate = placemark?.first?.location?.coordinate
-      self.configureMapView(coordinate!)
+      self.coordinate = placemark?.first?.location?.coordinate
+      self.configureMapView(self.coordinate!)
       self.configureUI()
     }
   }
   
   @IBAction func submitButtonPressed(sender: AnyObject) {
-    
+    ParseClient.sharedInstance.postStudentInformation(locationTextField.text!, mediaURL: urlSubmissionLabel.text!, latitude: (coordinate?.latitude)!, longitude: (coordinate?.longitude)!) { (result, error) in
+      
+    }
   }
   
   func configureUI() {

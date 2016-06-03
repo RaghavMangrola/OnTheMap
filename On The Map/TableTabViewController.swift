@@ -28,7 +28,7 @@ class TableTabViewController: UIViewController, UITableViewDelegate, UITableView
   
   func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCellWithIdentifier("studentInfo", forIndexPath: indexPath)
-    cell.textLabel?.text = ("\(studentsInformationInstance.studentsInformation[indexPath.row].firstName) \(studentsInformationInstance.studentsInformation[indexPath.row].lastName)")
+    cell.textLabel?.text = ("\(studentsInformationInstance.studentsInformation[indexPath.row].firstName) \(studentsInformationInstance.studentsInformation[indexPath.row].lastName)  \(studentsInformationInstance.studentsInformation[indexPath.row].mediaURL)")
     cell.imageView?.image = UIImage(named: "pin")
     return cell
   }

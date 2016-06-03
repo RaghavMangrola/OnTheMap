@@ -27,7 +27,30 @@ extension ParseClient {
           completionHandleForStudentInformation(success: false, error: NSError(domain: "getStudentInformation parsing", code: 0, userInfo: [NSLocalizedDescriptionKey: "Could not parse getFavoriteMovies"]))
         }
       }
+    }
+  }
+  
+  func postStudentInformation(mapString: String, mediaURL: String, latitude: Double, longitude: Double, completionHandlerForStudentInformation: (result: String?, error: NSError?) -> Void) {
+    
+    let userInfo = UClient.sharedInstance
+    
+    let parameters = [String:AnyObject]()
+    let jsonBody = "{\"uniqueKey\": \"\(userInfo.userID!)\", \"firstName\": \"\(userInfo.firstName!)\", \"lastName\": \"\(userInfo.lastName!)\",\"mapString\": \"\(mapString)\", \"mediaURL\": \"\(mediaURL)\",\"latitude\": \(latitude), \"longitude\": \(longitude)}"
+    
+    print(jsonBody)
+    
+    taskForPOSTMethod(Methods.StudentLocation, parameters: parameters, jsonBody: jsonBody) { (results, error) in
       
+      if let error = error {
+        print(error)
+        completionHandlerForStudentInformation(result: nil, error: error)
+      } else {
+        if let results = results["objectId"] as? String {
+          completionHandlerForStudentInformation(result: results, error: nil)
+        } else {
+          completionHandlerForStudentInformation(result: nil, error: NSError(domain: "postStudentInformation", code: 0, userInfo: [NSLocalizedDescriptionKey : "Could not parse postStudentInformation"]))
+        }
+      }
     }
   }
 }
