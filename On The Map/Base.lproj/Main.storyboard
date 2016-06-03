@@ -9,7 +9,7 @@
         <!--Login View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController storyboardIdentifier="loginVC" id="BYZ-38-t0r" customClass="LoginViewController" customModule="On_The_Map" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="LoginViewController" customModule="On_The_Map" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -117,11 +117,6 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="yzO-ju-Zix">
-                        <barButtonItem key="leftBarButtonItem" title="Logout" id="BoN-Ww-pxP">
-                            <connections>
-                                <action selector="logoutButtonPressed:" destination="l1D-fi-XZt" id="IGN-0I-NiS"/>
-                            </connections>
-                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" image="pin" id="VKl-sk-8ty">
                             <connections>
                                 <segue destination="Men-6e-v6B" kind="presentation" id="nxd-uK-UaV"/>
@@ -161,11 +156,6 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="c4v-DF-eUq">
-                        <barButtonItem key="leftBarButtonItem" title="Logout" id="Rmn-Ak-5EO">
-                            <connections>
-                                <action selector="logoutButtonPressed:" destination="WUI-J6-2PC" id="mz2-QE-Gj4"/>
-                            </connections>
-                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" image="pin" id="Z7A-Xn-KYx">
                             <connections>
                                 <segue destination="Men-6e-v6B" kind="presentation" id="agh-L6-gE9"/>
@@ -207,7 +197,7 @@
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mJg-wE-wNa">
                                 <rect key="frame" x="120" y="235" width="360" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
+                                <textInputTraits key="textInputTraits"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Where are you studying today?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7vZ-JO-zib">
                                 <rect key="frame" x="182" y="114" width="237" height="21"/>
@@ -272,7 +262,7 @@
                         <outlet property="mapView" destination="g5y-sD-cUr" id="lEU-6z-1CJ"/>
                         <outlet property="studyingLabel" destination="7vZ-JO-zib" id="zOZ-Af-8DJ"/>
                         <outlet property="submitButton" destination="WfD-Ri-452" id="MRd-IM-xtL"/>
-                        <outlet property="urlSubmissionTextField" destination="VZy-Zo-Ak0" id="I4H-E3-hnl"/>
+                        <outlet property="urlSubmissionLabel" destination="VZy-Zo-Ak0" id="3GU-wC-vDc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LpU-S7-TKa" userLabel="First Responder" sceneMemberID="firstResponder"/>

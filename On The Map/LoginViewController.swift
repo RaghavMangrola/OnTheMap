@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LoginViewController: UIViewController, UITextFieldDelegate {
+class LoginViewController: UIViewController {
   
   @IBOutlet weak var emailTextField: UITextField!
   @IBOutlet weak var passwordTextField: UITextField!
@@ -37,8 +37,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
   override func viewDidLoad() {
     super.viewDidLoad()
     configureUI()
-    
-    self.hideKeyboardWhenTappedAround()
   }
   
   private func configureUI() {
@@ -48,7 +46,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
   
   private func setupTextFields() {
     for textField in loginTextFields {
-      textField.delegate = self
       textField.backgroundColor = UIColor(red: 255, green: 255, blue: 255, alpha: 0.75)
       textField.textColor = UIColor.whiteColor()
     }
@@ -69,10 +66,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
       let controller = self.storyboard?.instantiateViewControllerWithIdentifier("mapAndTableTabBarController") as! UITabBarController
       self.presentViewController(controller, animated: true, completion: nil)
     }
-  }
-  func textFieldShouldReturn(textField: UITextField) -> Bool {
-    textField.resignFirstResponder()
-    return true
   }
 }
 
