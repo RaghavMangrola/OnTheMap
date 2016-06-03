@@ -12,8 +12,6 @@ import UIKit
 
 extension UClient {
   
-    let username = "raghav.mangrola@gmail.com"
-    let password = "i2flyt0hir3us7dazt4a"
   func authenticate(username: String, password: String,completionHandlerForAuthentication: (success: Bool, error: NSError?) -> Void ) {
     let parameters = [String:AnyObject]()
 
