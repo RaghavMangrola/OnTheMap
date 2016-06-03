@@ -14,15 +14,6 @@ class TableTabViewController: UIViewController, UITableViewDelegate, UITableView
 
   
   @IBOutlet weak var tableView: UITableView!
-  @IBAction func logoutButtonPressed(sender: AnyObject) {
-    UClient.sharedInstance.deleteSession() { (success, error) in
-      if success {
-        UClient.sharedInstance.logout(self)
-      } else {
-        self.displayError(error!)
-      }
-    }
-  }
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -50,14 +41,5 @@ class TableTabViewController: UIViewController, UITableViewDelegate, UITableView
     let app = UIApplication.sharedApplication()
     let toOpen = studentsInformationInstance.studentsInformation[indexPath.row].mediaURL
     app.openURL(NSURL(string: toOpen)!)
-  }
-  
-  func displayError(error: NSError) {
-    dispatch_async(dispatch_get_main_queue()) {
-      let alert = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: UIAlertControllerStyle.Alert)
-      let action = UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil)
-      alert.addAction(action)
-      self.presentViewController(alert, animated: true, completion: nil)
-    }
   }
 }
