@@ -43,6 +43,9 @@
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="udacity" translatesAutoresizingMaskIntoConstraints="NO" id="NfP-zc-o5b">
+                                <rect key="frame" x="172" y="5" width="256" height="256"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -50,11 +53,13 @@
                             <constraint firstItem="5IZ-Cu-5lZ" firstAttribute="top" secondItem="ZXa-ND-nhe" secondAttribute="bottom" constant="16" id="A6X-qb-hRi"/>
                             <constraint firstItem="ZXa-ND-nhe" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="261" id="FQS-p0-4h3"/>
                             <constraint firstAttribute="trailingMargin" secondItem="5IZ-Cu-5lZ" secondAttribute="trailing" constant="40" id="OJx-em-PWa"/>
+                            <constraint firstItem="NfP-zc-o5b" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Qsv-BF-zaw"/>
                             <constraint firstItem="hX0-No-VdA" firstAttribute="top" secondItem="5IZ-Cu-5lZ" secondAttribute="bottom" constant="16" id="be5-sg-2aW"/>
                             <constraint firstItem="hX0-No-VdA" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="40" id="ceX-gn-zli"/>
                             <constraint firstAttribute="trailingMargin" secondItem="hX0-No-VdA" secondAttribute="trailing" constant="40" id="d6q-Aq-zZ1"/>
                             <constraint firstItem="ZXa-ND-nhe" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="40" id="eHv-TD-lb1"/>
                             <constraint firstAttribute="trailingMargin" secondItem="ZXa-ND-nhe" secondAttribute="trailing" constant="40" id="o3a-Nc-Act"/>
+                            <constraint firstItem="ZXa-ND-nhe" firstAttribute="top" secondItem="NfP-zc-o5b" secondAttribute="bottom" constant="20" id="pNN-Hv-wMa"/>
                         </constraints>
                     </view>
                     <connections>
@@ -325,6 +330,7 @@
         <image name="list" width="32" height="32"/>
         <image name="map" width="32" height="32"/>
         <image name="pin" width="32" height="32"/>
+        <image name="udacity" width="256" height="256"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="agh-L6-gE9"/>
