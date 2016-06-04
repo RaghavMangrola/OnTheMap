@@ -18,8 +18,8 @@ class ParseClient {
     var parameters = parameters
     
     let request = NSMutableURLRequest(URL: parseURLFromParameters(parameters, withPathExtension: method))
-    request.addValue("QrX47CA9cyuGewLdsL7o5Eb8iug6Em8ye0dnAbIr", forHTTPHeaderField: "X-Parse-Application-Id")
-    request.addValue("QuWThTdiRmTux3YaDseUSEpUKo7aBYM737yKd4gY", forHTTPHeaderField: "X-Parse-REST-API-Key")
+    request.addValue(APIKeys.Parse, forHTTPHeaderField: "X-Parse-Application-Id")
+    request.addValue(APIKeys.REST, forHTTPHeaderField: "X-Parse-REST-API-Key")
     
     
     
@@ -36,7 +36,7 @@ class ParseClient {
       }
       
       guard let statusCode = (response as? NSHTTPURLResponse)?.statusCode where statusCode >= 200 && statusCode <= 299 else {
-        sendError("Your request returned a status code other than 2xx!")
+        sendError("Error connecting to server")
         return
       }
       
@@ -60,8 +60,8 @@ class ParseClient {
     
     let request = NSMutableURLRequest(URL: parseURLFromParameters(parameters, withPathExtension: method))
     request.HTTPMethod = "POST"
-    request.addValue("QrX47CA9cyuGewLdsL7o5Eb8iug6Em8ye0dnAbIr", forHTTPHeaderField: "X-Parse-Application-Id")
-    request.addValue("QuWThTdiRmTux3YaDseUSEpUKo7aBYM737yKd4gY", forHTTPHeaderField: "X-Parse-REST-API-Key")
+    request.addValue(APIKeys.Parse, forHTTPHeaderField: "X-Parse-Application-Id")
+    request.addValue(APIKeys.REST, forHTTPHeaderField: "X-Parse-REST-API-Key")
     request.addValue("application/json", forHTTPHeaderField: "Content-Type")
     request.HTTPBody = jsonBody.dataUsingEncoding(NSUTF8StringEncoding)
     

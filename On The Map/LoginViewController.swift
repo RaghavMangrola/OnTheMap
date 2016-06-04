@@ -54,16 +54,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     }
   }
   
-  func displayError(error: NSError) {
-    dispatch_async(dispatch_get_main_queue()) {
-      let alert = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: UIAlertControllerStyle.Alert)
-      let action = UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil)
-      alert.addAction(action)
-      // TODO: Highlight empty text field so user can visually see what's missing.
-      self.presentViewController(alert, animated: true, completion: nil)
-    }
-  }
-  
   private func completeLogin() {
     dispatch_async(dispatch_get_main_queue()) {
       let controller = self.storyboard?.instantiateViewControllerWithIdentifier("mapAndTableTabBarController") as! UITabBarController

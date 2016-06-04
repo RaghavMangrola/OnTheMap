@@ -51,13 +51,4 @@ class TableTabViewController: UIViewController, UITableViewDelegate, UITableView
     let toOpen = studentsInformationInstance.studentsInformation[indexPath.row].mediaURL
     app.openURL(NSURL(string: toOpen)!)
   }
-  
-  func displayError(error: NSError) {
-    dispatch_async(dispatch_get_main_queue()) {
-      let alert = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: UIAlertControllerStyle.Alert)
-      let action = UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil)
-      alert.addAction(action)
-      self.presentViewController(alert, animated: true, completion: nil)
-    }
-  }
 }

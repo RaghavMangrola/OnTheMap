@@ -36,16 +36,23 @@ class InformationPostingViewController: UIViewController, MKMapViewDelegate, UIT
     let geocoder = CLGeocoder()
     
     geocoder.geocodeAddressString(locationTextField.text!) { (placemark, error) in
-      activitiyIndicator.stopAnimating()
-      activitiyIndicator.removeFromSuperview()
-      self.coordinate = placemark?.first?.location?.coordinate
-      self.configureMapView(self.coordinate!)
-      self.configureUI()
+      if (error != nil) {
+        self.displayError(NSError(domain: "geocoder", code: 1, userInfo: [NSLocalizedDescriptionKey: "Failed to Geocode"]))
+      } else {
+        activitiyIndicator.stopAnimating()
+        activitiyIndicator.removeFromSuperview()
+        self.coordinate = placemark?.first?.location?.coordinate
+        self.configureMapView(self.coordinate!)
+        self.configureUI()
+      }
     }
   }
   
   @IBAction func submitButtonPressed(sender: AnyObject) {
     ParseClient.sharedInstance.postStudentInformation(locationTextField.text!, mediaURL: urlSubmissionTextField.text!, latitude: (coordinate?.latitude)!, longitude: (coordinate?.longitude)!) { (result, error) in
+      if (error != nil) {
+        self.displayError(NSError(domain: "postStudentInformation", code: 1, userInfo: [NSLocalizedDescriptionKey: "Failed to post student info"]))
+      }
     }
   }
   
@@ -53,7 +60,7 @@ class InformationPostingViewController: UIViewController, MKMapViewDelegate, UIT
     super.viewDidLoad()
     locationTextField.delegate = self
     urlSubmissionTextField.delegate = self
-    self.hideKeyboardWhenTappedAround()
+    hideKeyboardWhenTappedAround()
   }
   
   func configureUI() {
@@ -79,6 +86,4 @@ class InformationPostingViewController: UIViewController, MKMapViewDelegate, UIT
     textField.resignFirstResponder()
     return true
   }
-  
-  
 }

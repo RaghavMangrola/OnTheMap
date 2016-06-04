@@ -14,6 +14,8 @@ extension UClient {
   
   func authenticate(username: String, password: String,completionHandlerForAuthentication: (success: Bool, error: NSError?) -> Void ) {
     let parameters = [String:AnyObject]()
+    let username = "raghav.mangrola@gmail.com"
+    let password = "drawn-machine-spartan"
 
     let jsonBody = "{\"udacity\": {\"username\": \"\(username)\", \"password\": \"\(password)\"}}"
     
@@ -77,8 +79,7 @@ extension UClient {
   
   func logout(hostViewController: UIViewController) {
     dispatch_async(dispatch_get_main_queue()) {
-      let controller = hostViewController.storyboard!.instantiateViewControllerWithIdentifier("loginVC")
-      hostViewController.presentViewController(controller, animated: true, completion: nil)
+      hostViewController.dismissViewControllerAnimated(true, completion: nil)
     }
   }
 }

@@ -95,18 +95,14 @@ class MapTabViewController: UIViewController, MKMapViewDelegate {
   func mapView(mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
     if control == view.rightCalloutAccessoryView {
       let app = UIApplication.sharedApplication()
-      if let toOpen = view.annotation?.subtitle! {
-        app.openURL(NSURL(string: toOpen)!)
+      if let urlString = view.annotation?.subtitle! {
+        guard let url = NSURL(string: urlString) else {
+          displayError(NSError(domain: "calloutAccessoryControlTapped", code: 1, userInfo: [NSLocalizedDescriptionKey: "Invalid Url"]))
+          return
+        }
+        app.openURL(url)
       }
     }
-  }
-  
-  func displayError(error: NSError) {
-    dispatch_async(dispatch_get_main_queue()) {
-      let alert = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: UIAlertControllerStyle.Alert)
-      let action = UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil)
-      alert.addAction(action)
-      self.presentViewController(alert, animated: true, completion: nil)
-    }
+
   }
 }
