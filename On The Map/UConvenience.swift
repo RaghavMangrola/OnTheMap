@@ -14,8 +14,6 @@ extension UClient {
   
   func authenticate(username: String, password: String,completionHandlerForAuthentication: (success: Bool, error: NSError?) -> Void ) {
     let parameters = [String:AnyObject]()
-    let username = "raghav.mangrola@gmail.com"
-    let password = "drawn-machine-spartan"
 
     let jsonBody = "{\"udacity\": {\"username\": \"\(username)\", \"password\": \"\(password)\"}}"
     
