@@ -37,6 +37,8 @@ class InformationPostingViewController: UIViewController, MKMapViewDelegate, UIT
     
     geocoder.geocodeAddressString(locationTextField.text!) { (placemark, error) in
       if (error != nil) {
+        activitiyIndicator.stopAnimating()
+        activitiyIndicator.removeFromSuperview()
         self.displayError(NSError(domain: "geocoder", code: 1, userInfo: [NSLocalizedDescriptionKey: "Failed to Geocode"]))
       } else {
         activitiyIndicator.stopAnimating()
