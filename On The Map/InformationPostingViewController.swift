@@ -54,6 +54,8 @@ class InformationPostingViewController: UIViewController, MKMapViewDelegate, UIT
     ParseClient.sharedInstance.postStudentInformation(locationTextField.text!, mediaURL: urlSubmissionTextField.text!, latitude: (coordinate?.latitude)!, longitude: (coordinate?.longitude)!) { (result, error) in
       if (error != nil) {
         self.displayError(NSError(domain: "postStudentInformation", code: 1, userInfo: [NSLocalizedDescriptionKey: "Failed to post student info"]))
+      } else {
+        self.dismissViewControllerAnimated(true, completion: nil)
       }
     }
   }
