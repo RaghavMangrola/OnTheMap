@@ -21,6 +21,8 @@ class InformationPostingViewController: UIViewController, MKMapViewDelegate, UIT
   @IBOutlet weak var mapView: MKMapView!
   @IBOutlet weak var urlSubmissionTextField: UITextField!
   @IBOutlet weak var submitButton: UIButton!
+  @IBOutlet weak var findLocationStack: UIStackView!
+  @IBOutlet weak var enterURLStack: UIStackView!
   
   @IBAction func cancelButtonPressed(sender: AnyObject) {
     dismissViewControllerAnimated(true, completion: nil)
@@ -68,12 +70,8 @@ class InformationPostingViewController: UIViewController, MKMapViewDelegate, UIT
   }
   
   func configureUI() {
-    studyingLabel.hidden = true
-    locationTextField.hidden = true
-    findOnMapButton.hidden = true
-    mapView.hidden = false
-    urlSubmissionTextField.hidden = false
-    submitButton.hidden = false
+    findLocationStack.hidden = true
+    enterURLStack.hidden = false
   }
   
   func configureMapView(coordinate: CLLocationCoordinate2D) {
